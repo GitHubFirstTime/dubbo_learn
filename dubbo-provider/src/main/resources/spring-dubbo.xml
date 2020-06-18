@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="provider"/>
+    <!-- 注册中心的ip地址 -->
+    <dubbo:registry address="zookeeper://192.168.3.66:2181"/>
+    <dubbo:protocol name="dubbo" port="20880" accesslog="true"/>
+    <!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 -->
+    <dubbo:annotation package="cn.zyc.dubbo.provider.service.impl"/>
+</beans>
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="provider"/>
+    &lt;!&ndash; 注册中心的ip地址 &ndash;&gt;
+    <dubbo:registry address="zookeeper://192.168.3.66:2181"/>
+    &lt;!&ndash; 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 &ndash;&gt;
+    <dubbo:annotation package="cn.zyc.dubbo.provider.service"/>
+
+    &lt;!&ndash; use dubbo protocol to export service on port 20880 &ndash;&gt;
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    &lt;!&ndash; service implementation, as same as regular local bean &ndash;&gt;
+    <bean id="userService" class="cn.zyc.dubbo.provider.service.impl.ProviderServiceImpl"/>
+    &lt;!&ndash; declare the service interface to be exported &ndash;&gt;
+    <dubbo:service interface="cn.zyc.api.UserService" ref="userService"/>
+</beans>-->
